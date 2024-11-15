@@ -7,6 +7,7 @@ export default class homepage
     private page:Page;
     private pageHeader:Locator;
     private filterDrodpdown:Locator;
+    private checkoutCart:Locator;
     private sortedProductNameList:string[];
     private sortedProductPriceList:number[];
     constructor(page:Page)
@@ -14,7 +15,7 @@ export default class homepage
         this.page = page;
         this.pageHeader = page.locator("//div[text()='Swag Labs']");
         this.filterDrodpdown = page.locator("//select[@data-test='product-sort-container']")
-        
+        this.checkoutCart = page.locator("//a[@data-test='shopping-cart-link']")
     }
 
     waitForPageHeaderAvailability = async()=>{
@@ -70,5 +71,14 @@ export default class homepage
         this.sortedProductPriceList = sortnumDescending(productPriceList)
     }
 
-   
+   addProductsToCart = async (listofItems:string[])=>{
+        
+        for(const itemName of listofItems){
+            await clickElement(this.page.locator(`//div[a[div[contains(text(),'${itemName}')]]]//parent::div//button`));
+        }
+   }
+
+   checkoutWithAddedProducts = async()=>{
+    clickElement(this.checkoutCart);
+   }
 }

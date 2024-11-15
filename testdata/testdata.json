@@ -1,0 +1,10 @@
+{
+    "productNames":[
+        "Backpack",
+        "Jacket",
+        "Onesie"   
+    ],
+    "FirstName":"TestUser",
+    "LastName":"Last",
+    "PostalCode":"712423"
+}

@@ -1,6 +1,8 @@
-import loginpage from '../pages/loginpage'
-import homepage from '../pages/homepage';
+import homepage from '../pages/homepage'
+import cartpage from '../pages/cartpage'
+import informationpage from '../pages/informationpage'
 
+import testdata from '../testdata/testdata.json'
 import {playTest as test, page} from '../tests/hooks'
 
 
@@ -37,5 +39,15 @@ test('Validate price sort order high to low',async()=>{
 })
 
 test('Validate User Checkout Journey',async()=>{
+    let homePage = new homepage(page);
+    let cartPage = new cartpage(page);
+    let informationPage = new informationpage(page);
+
+    await homePage.addProductsToCart(testdata.productNames);
+    await homePage.checkoutWithAddedProducts();
     
+    await cartPage.waitForPageVisibility();
+    await cartPage.validateCartCountAndProceed(testdata.productNames);
+
+    await informationPage.fillInRequiredDetails(testdata.FirstName,testdata.LastName,testdata.PostalCode);
 })
