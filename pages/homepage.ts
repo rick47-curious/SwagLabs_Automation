@@ -42,9 +42,11 @@ export default class homepage
         let productTitlesArray = await this.page.locator("//div[@data-test='inventory-item-name']").allTextContents();
 
         if (compareArrays(productTitlesArray,this.sortedProductNameList))
-            console.log("Product list is sorted in Z to A order")
+            //console.log("Product list is sorted in Z to A order")
+            return true
         else
-            console.log("Product list is not sorted in Z to A order")
+            //console.log("Product list is not sorted in Z to A order")
+            return false
 
     }
 
@@ -56,9 +58,11 @@ export default class homepage
         })
         
         if (compareArrays(numsProductArray,this.sortedProductPriceList))
-            console.log("Product list is sorted in high to low order")
+            //console.log("Product list is sorted in high to low order")
+            return true
         else
-            console.log("Product list is not sorted in high to low order")
+            //console.log("Product list is not sorted in high to low order")
+            return false
     }
 
     getArrayProductPrice = async()=>{
