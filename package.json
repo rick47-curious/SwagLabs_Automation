@@ -2,7 +2,10 @@
   "name": "saucedemoautomation",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "smoketest":"npx playwright test --grep @smoke",
+    "e2etest":"npx playwright test --grep @e2e"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -12,6 +15,7 @@
     "@types/node": "^22.9.0"
   },
   "dependencies": {
+    "ortoni-report": "^2.0.8",
     "playwright": "^1.48.2"
   }
 }

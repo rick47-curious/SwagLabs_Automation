@@ -9,7 +9,7 @@ import {playTest as test, page} from '../tests/hooks'
 import { expect } from 'playwright/test'
 
 
-test('Validate product title sort order ZtoA',async ()=>{
+test('Validate product title sort order ZtoA',{tag:'@smoke'},async ()=>{
     
     let homePage = new homepage(page);
 
@@ -27,7 +27,7 @@ test('Validate product title sort order ZtoA',async ()=>{
     
 })
 
-test('Validate price sort order high to low',async()=>{
+test('Validate price sort order high to low',{tag:'@smoke'},async()=>{
     let homePage = new homepage(page);
 
     await homePage.waitForPageHeaderAvailability();
@@ -44,7 +44,7 @@ test('Validate price sort order high to low',async()=>{
 
 })
 
-test('Validate User Checkout Journey',async()=>{
+test('Validate User Checkout Journey',{tag:'@e2e'},async()=>{
     let homePage = new homepage(page);
     let cartPage = new cartpage(page);
     let informationPage = new informationpage(page);
