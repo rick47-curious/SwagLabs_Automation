@@ -31,6 +31,10 @@
 
 ## Sample execution report 
 
-<video controls src="video-attachments/20241117-0739-36.3365030.mp4" title="ReportDashboard"></video>
+![image](https://github.com/user-attachments/assets/d702d18a-17a5-41e2-8376-fc3dce45a6ff)
 
-<video controls src="video-attachments/20241117-0743-31.6988865.mp4" title="Test details"></video>
+![image](https://github.com/user-attachments/assets/47490a63-7b5d-41d9-bfea-37ceab525a78)
+
+![image](https://github.com/user-attachments/assets/2d9b85d6-e05c-45ef-b308-38fd43652524)
+
+
