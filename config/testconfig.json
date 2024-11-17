@@ -4,5 +4,5 @@
     "defaultTimeout":10000,
     "defaultNavTimeout":30000,
     "userName":"standard_user",
-    "password":"secret_sauce"
+    "password":""
 }

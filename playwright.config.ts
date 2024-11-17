@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { OrtoniReportConfig } from 'ortoni-report';
 
 /**
  * Read environment variables from file.
@@ -7,7 +8,19 @@ import { defineConfig, devices } from '@playwright/test';
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
-
+const reportConfig: OrtoniReportConfig = {
+  open: process.env.CI ? "never" : "always",
+  folderPath: "report-db",
+  filename: "index.html",
+  title: "Ortoni Test Report",
+  showProject: !true,
+  projectName: "SwagLab Automation",
+  testType: "Smoke & Regression",
+  authorName: "Anuplab Chatterjee",
+  base64Image: true,
+  stdIO: false,
+  preferredTheme: "dark"
+};
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -22,9 +35,10 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [["ortoni-report",reportConfig]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    screenshot:"on",
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
