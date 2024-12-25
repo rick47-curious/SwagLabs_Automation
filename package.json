@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "smoketest":"npx playwright test --grep @smoke",
-    "e2etest":"npx playwright test --grep @e2e"
+    "smoketest": "npx playwright test --grep @smoke",
+    "e2etest": "npx playwright test --grep @e2e"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
     "@playwright/test": "^1.48.2",
     "@types/node": "^22.9.0"
   },

@@ -1,5 +1,8 @@
-import { BrowserContext, chromium, firefox } from "playwright"
+import { BrowserContext,Page, chromium, firefox } from "playwright"
 import {browserType,isHeadless} from '../config/testconfig.json'
+
+let page:Page;
+let browserContext:BrowserContext;
 
 export const launchBrowser  = async():Promise<BrowserContext>=>
 {
