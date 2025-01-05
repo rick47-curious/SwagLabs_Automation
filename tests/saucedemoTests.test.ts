@@ -12,7 +12,8 @@ import { expect } from 'playwright/test'
 test('Validate product title sort order ZtoA',{tag:'@smoke'},async ()=>{
     
     let homePage = new homepage(page);
-
+    //Wait for accessibility trigger to complete initially
+    await page.waitForTimeout(5000);
     await homePage.waitForPageHeaderAvailability();
     
     //grab product titles and sort in descending alphabetic order
@@ -29,6 +30,8 @@ test('Validate product title sort order ZtoA',{tag:'@smoke'},async ()=>{
 
 test('Validate price sort order high to low',{tag:'@smoke'},async()=>{
     let homePage = new homepage(page);
+    //Wait for accessibility trigger to complete initially
+    await page.waitForTimeout(5000);
 
     await homePage.waitForPageHeaderAvailability();
 
@@ -51,7 +54,10 @@ test('Validate User Checkout Journey',{tag:'@e2e'},async()=>{
     let checkoutOverviewPage = new checkoutOverviewpage(page);
     let finalcheckoutPage = new finalcheckoutpage(page);
 
+    await homePage.waitForPageHeaderAvailability();
     await homePage.addProductsToCart(testdata.productNames);
+    //Wait for accessibility trigger to complete initially
+    await page.waitForTimeout(5000);
     await homePage.checkoutWithAddedProducts();
     
     await cartPage.waitForPageVisibility();
