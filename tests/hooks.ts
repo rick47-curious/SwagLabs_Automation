@@ -5,6 +5,7 @@ import { checkAccessibility } from '../reusables/common'
 import loginpage from '../pages/loginpage'
 import testconfig from '../config/testconfig.json'
 
+//Testconfig - TestType possible values 'web' or 'api'
 
 let browserContext: BrowserContext;
 let page:Page;
@@ -12,36 +13,46 @@ let accessibilityReports: any[] = [];
 
 playTest.beforeAll(async ()=>{
 
-  unlink('./accessibilityReports/accessibilityReport.json',()=>{});
+  if (testconfig.testType === 'web'){
 
-  browserContext = await launchBrowser();
-  browserContext.setDefaultTimeout(testconfig.defaultTimeout);
-  browserContext.setDefaultNavigationTimeout(testconfig.defaultNavTimeout);
+    //To delete the accessibility report file before starting the test
+    unlink('./accessibilityReports/accessibilityReport.json',()=>{});
+
+    browserContext = await launchBrowser();
+    browserContext.setDefaultTimeout(testconfig.defaultTimeout);
+    browserContext.setDefaultNavigationTimeout(testconfig.defaultNavTimeout);
+  }
 })
 
 playTest.beforeEach(async()=>{
-    page = await browserContext.newPage();
 
-    await page.goto(testconfig.url);  
-   
-    page.on('framenavigated', async () => {
-      await checkAccessibility(page,accessibilityReports);
-    });
-
-    let loginPage = new loginpage(page);
+  if (testconfig.testType === 'web'){
+      page = await browserContext.newPage();
     
-    await loginPage.waitForLoginPage();
-    await loginPage.loginUser();
+      await page.goto(testconfig.url);  
+    
+      page.on('framenavigated', async () => {
+        await checkAccessibility(page,accessibilityReports);
+      });
+
+      let loginPage = new loginpage(page);
+      
+      await loginPage.waitForLoginPage();
+      await loginPage.loginUser();
+  }
 })
 
 playTest.afterAll(async ()=>{
-  await closeBrowser(browserContext);
 
-  // Save the accessibility reports to a file or attach to the final report
-  process.on('exit', () => {
-    writeFileSync('./accessibilityReports/accessibilityReport.json', JSON.stringify(accessibilityReports, null, 2),{ flag: "w"});
- })
-});
+  if (testconfig.testType === 'web'){
+    await closeBrowser(browserContext);
+
+    // Save the accessibility reports to a file or attach to the final report
+    process.on('exit', () => {
+      writeFileSync('./accessibilityReports/accessibilityReport.json', JSON.stringify(accessibilityReports, null, 2),{ flag: "w"});
+  })
+}
+})
 
 
 export {playTest,page};

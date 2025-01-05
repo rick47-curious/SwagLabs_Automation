@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import { OrtoniReportConfig } from 'ortoni-report';
+import {testType,url,apiUrl} from './config/testconfig.json'
 
 /**
  * Read environment variables from file.
@@ -40,8 +41,11 @@ export default defineConfig({
   use: {
     screenshot:"on",
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
+     baseURL: testType === 'web' ? url : apiUrl,
 
+     extraHTTPHeaders:{
+      'Authorization': 'demo token'
+     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },

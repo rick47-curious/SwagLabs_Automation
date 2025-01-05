@@ -1,9 +1,11 @@
 {
+    "testType": "api",
     "browserType": "chrome",
     "isHeadless":false,
     "defaultTimeout":10000,
     "defaultNavTimeout":30000,
     "url":"https://www.saucedemo.com/",
+    "apiUrl":"https://reqres.in",
     "userName":"standard_user",
     "password":""
 }

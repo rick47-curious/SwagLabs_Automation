@@ -6,5 +6,7 @@
     ],
     "FirstName":"TestUser",
     "LastName":"Last",
-    "PostalCode":"712423"
+    "PostalCode":"712423",
+    "name":"TestUser",
+    "job":"Developer"
 }
